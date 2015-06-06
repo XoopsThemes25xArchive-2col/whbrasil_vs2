@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}> - (<{$xoops_pagetitle}>)" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>" />
+
+<!-- RMV: added module header -->
+<link href="style.css" rel="stylesheet" type="text/css" />
+<{$xoops_module_header}>
+<script type="text/javascript">
+<!--
+<{$xoops_js}>
+//-->
+</script>
+<script type="text/javascript">
+function DivShow(DivName)
+{
+	if	(document.layers) {
+		document.layers[DivName].visibility="visible"; 
+	} else if (document.getElementById) {
+		document.getElementById(DivName).style.display="";
+		document.getElementById(DivName).style.visibility="visible";
+	} else if (document.all) {
+		document.all(DivName).style.display="";
+		document.all(DivName).style.visibility="visible";	
+	}
+}
+
+function Ocultar(objName) 
+{
+	if	(document.layers) {
+		document.layers[objName].visibility="hidden"; 
+	} else if (document.getElementById) {
+		document.getElementById(objName).style.display="none";
+		document.getElementById(objName).style.visibility="hidden";
+	} else if (document.all) {
+		document.all(objName).style.display="none";
+		document.all(objName).style.visibility="hidden";	
+	}
+}
+
+function MostrarEntrada() {
+  DivShow('Entrada');
+  document.frmLogin['uname'].focus();
+}
+//-->
+</script>
+</head>
+<body>
+<div id="Entrada" style="Z-INDEX: 999; LEFT: 400px; VISIBILITY: hidden; WIDTH: 210px; POSITION: absolute; TOP: 20px; right: 200px;  BACKGROUND-COLOR: #D3D3D3; DISPLAY: none;">
+  <div class="logincenter">Login</div>
+    <form name="frmLogin" id="frmLogin" method="post" action="<{$xoops_url}>/user.php">
+      <div class="logintbl">
+        <label for="uname">Usuário</label>
+        <input type="text" id="uname" name="uname" /><br /><br />
+        <label for="pass">Senha</label>
+        <input type="password" id="pass" name="pass" /><br /><br />
+        <input type="submit" name="submit" value="Ok" />
+        <input type="button" name="cancel" onclick="javascript:Ocultar('Entrada');" value="Cancelar" />
+        <input name="op" value="login" type="hidden" />
+        <input type="hidden" name="xoops_redirect" value="/admin.php" />
+        <br />
+        <br />
+        <a style="font-weight: normal; color: #000000; font-size: 10px" href="<{$xoops_url}>/user.php">Esqueceu sua senha?</a>
+      </div>
+    </form>
+</div>
+
+
+
+<div id="header">
+</div>
+<table cellspacing="0" cellpadding="0" id="header_logo" align="center">
+<tr><td id="logo"><a href="<{$xoops_url}>"><img src="<{$xoops_imageurl}>/images/logo.png" alt="<{$xoops_sitename}>" border="0" width="230" /></a>
+
+</td>
+<td id="title">
+<{$xoops_pagetitle}>
+</td></tr></table>
+  
+     
+<table cellspacing="0" cellpadding="0" id="Main" align="center">
+    <tr>
+	  <{if $xoops_showlblock == 1}>
+      <td id="leftcolumn">
+
+        <!-- Start left blocks loop -->
+        <{foreach item=block from=$xoops_lblocks}>
+          <{include file="$xoops_theme/theme_blockleft.html"}>
+        <{/foreach}>
+        <!-- End left blocks loop -->      </td>
+     <{/if}>
+      <td id="centercolumn">
+        <!-- Display center blocks if any -->
+<{if $xoops_showcblock == 1}>
+  <table cellspacing="0" class="centercol">
+    <tr>
+
+      <td id="centerCcolumn" colspan="2">
+        <!-- Start center-center blocks loop -->
+<{foreach item=block from=$xoops_ccblocks}> <{include file="$xoops_theme/theme_blockcenter_c.html"}> <{/foreach}>
+        <!-- End center-center blocks loop -->      </td>
+    </tr>
+    <tr>
+      <td id="centerLcolumn">
+        <!-- Start center-left blocks loop -->
+
+<{foreach item=block from=$xoops_clblocks}> <{include file="$xoops_theme/theme_blockcenter_l.html"}> <{/foreach}>
+        <!-- End center-left blocks loop -->      </td>
+      <td id="centerRcolumn">
+        <!-- Start center-right blocks loop -->
+<{foreach item=block from=$xoops_crblocks}> <{include file="$xoops_theme/theme_blockcenter_r.html"}> <{/foreach}>
+        <!-- End center-right blocks loop -->      </td>
+    </tr>
+  </table>
+
+<{/if}>
+  <!-- End display center blocks -->
+  <div class="content"> <{$xoops_contents}> </div>
+<{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright or $xoBlocks.page_bottomcenter}>
+  <table cellspacing="0" class="centercol">
+<{if $xoBlocks.page_bottomcenter}>
+    <tr>
+      <td id="bottomCcolumn" colspan="2"> <{foreach from=$xoBlocks.page_bottomcenter item=block}><{include file="$xoops_theme/theme_blockcenter_c.html"}><{/foreach}> </td>
+    </tr>
+
+<{/if}> <{if $xoBlocks.page_bottomleft or $xoBlocks.page_bottomright}>
+    <tr>
+      <td id="bottomLcolumn"> <{foreach from=$xoBlocks.page_bottomleft item=block}><{include file="$xoops_theme/theme_blockcenter_l.html"}><{/foreach}> </td>
+      <td id="bottomRcolumn"> <{foreach from=$xoBlocks.page_bottomright item=block}><{include file="$xoops_theme/theme_blockcenter_r.html"}><{/foreach}> </td>
+    </tr>
+
+<{/if}>
+  </table>
+<{/if}> </td>
+
+    </tr>
+
+    
+</table>
+<table cellspacing="0" cellpadding="0" id="footer" align="center">
+<tr>
+<td>
+<table cellspacing="0" cellpadding="0" id="footer2" align="center">
+<tr>
+<td id="footer_content">
+<{$xoops_footer}>
+<p></p>
+<dt><a href="http://www.whbrasil.com.br" target="_blank" title="Web House Brasil criação de sites e mídias digitais" alt="Web House Brasil criação de sites e mídias digitais">Copyright © Web House Brasil criação de sites e mídias digitais</a>.
+</td>
+<td id="footer_powered">
+<img src=<{$xoops_imageurl}>/images/pgto.png>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
